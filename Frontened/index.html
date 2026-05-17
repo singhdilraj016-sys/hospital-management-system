@@ -1,0 +1,282 @@
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Management System - Login</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      height:100vh;
+      background: linear-gradient(135deg,#4facfe,#8e44ad);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .background{
+      position:absolute;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      z-index:-1;
+    }
+
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,0.1);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .circle:nth-child(1){
+      width:250px;
+      height:250px;
+      top:10%;
+      left:5%;
+    }
+
+    .circle:nth-child(2){
+      width:180px;
+      height:180px;
+      bottom:10%;
+      right:10%;
+      animation-delay:2s;
+    }
+
+    .circle:nth-child(3){
+      width:120px;
+      height:120px;
+      top:60%;
+      left:40%;
+      animation-delay:1s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    .login-container{
+      width:400px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:25px;
+      padding:40px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.2);
+      color:white;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .logo{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .logo i{
+      font-size:60px;
+      margin-bottom:10px;
+      color:#fff;
+    }
+
+    .logo h2{
+      font-weight:700;
+      margin-top:10px;
+    }
+
+    .form-control{
+      height:50px;
+      border:none;
+      border-radius:12px;
+      padding-left:45px;
+      background:rgba(255,255,255,0.2);
+      color:white;
+    }
+
+    .form-control::placeholder{
+      color:#f1f1f1;
+    }
+
+    .form-control:focus{
+      background:rgba(255,255,255,0.25);
+      box-shadow:none;
+      color:white;
+    }
+
+    .input-box{
+      position:relative;
+      margin-bottom:20px;
+    }
+
+    .input-box i{
+      position:absolute;
+      top:17px;
+      left:15px;
+      color:white;
+    }
+
+    .login-btn{
+      width:100%;
+      height:50px;
+      border:none;
+      border-radius:12px;
+      background:white;
+      color:#6c5ce7;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .login-btn:hover{
+      background:#6c5ce7;
+      color:white;
+      transform:translateY(-2px);
+    }
+
+    .extra-links{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+    }
+
+    .extra-links a{
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    .error{
+      color:#ffb3b3;
+      font-size:14px;
+      margin-top:10px;
+      text-align:center;
+      display:none;
+    }
+
+    @media(max-width:450px){
+      .login-container{
+        width:90%;
+        padding:30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <div class="login-container">
+
+    <div class="logo">
+      <i class="fa-solid fa-hospital"></i>
+      <h2>MediCare HMS</h2>
+      <p>Hospital Management System</p>
+    </div>
+
+    <form id="loginForm">
+
+      <div class="input-box">
+        <i class="fa-solid fa-user"></i>
+        <input 
+          type="text" 
+          id="username" 
+          class="form-control" 
+          placeholder="Enter Username"
+          required
+        >
+      </div>
+
+      <div class="input-box">
+        <i class="fa-solid fa-lock"></i>
+        <input 
+          type="password" 
+          id="password" 
+          class="form-control" 
+          placeholder="Enter Password"
+          required
+        >
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+
+      <div class="error" id="errorMsg">
+        Invalid Username or Password
+      </div>
+
+    </form>
+
+    <div class="extra-links">
+      <a href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    loginForm.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Demo Login
+      if(username === "dilraj" && password === "dilraj123"){
+        
+        alert("Login Successful!");
+
+        // Redirect to dashboard
+        window.location.href = "dashboard.html";
+
+      } else {
+        errorMsg.style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
+```
