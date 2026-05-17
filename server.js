@@ -39,12 +39,27 @@ app.get("/", (req, res) => {
 const patientSchema = new mongoose.Schema({
 
     name: String,
-    age: Number,
+    age: String,
     disease: String,
     phone: String
 
 });
+app.get("/patients", async (req, res) => {
 
+const patients = await Patient.find();
+
+res.json(patients);
+
+});
+app.post("/patients", async (req, res) => {
+
+const patient = new Patient(req.body);
+
+await patient.save();
+
+res.json(patient);
+
+});
 const Patient = mongoose.model("Patient", patientSchema);
 
 /* ===================================== */
