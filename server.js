@@ -15,7 +15,7 @@ app.use(express.json());
 /* MONGODB CONNECTION */
 /* ===================================== */
 
-mongoose.connect("YOUR_MONGODB_ATLAS_URL")
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log("MongoDB Connected");
 })
