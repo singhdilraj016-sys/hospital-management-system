@@ -6,14 +6,17 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.get("/", (req, res) => {
+    res.send("Backend Working");
+});
 
 /* =========================
    MONGODB CONNECTION
 ========================= */
 
-mongoose.connect(process.env.MONGO_URL)
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+//mongoose.connect(process.env.MONGO_URL)
+//.then(() => console.log("MongoDB Connected"))
+//.catch(err => console.log(err));
 /* =========================
    PATIENT MODEL
 ========================= */
